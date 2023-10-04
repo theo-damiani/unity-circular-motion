@@ -2,29 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingObject : MonoBehaviour
+public class MovingObjectList : MonoBehaviour
 {
+    [SerializeField] private List<GameObject> listGameObject;
     [SerializeField] private Vector3 originPosition;
-    [SerializeField] private Vector3 targetPosition;
+    [SerializeField] private SimulationData simulationData;
     [SerializeField] private float moveTime;
 
     private Coroutine movingCoroutine;
 
-    public void MoveObjectToTarget()
+    public void MoveEveryObjectToTarget()
     {
-        if (movingCoroutine!=null)
-            StopCoroutine(movingCoroutine);
-        movingCoroutine = StartCoroutine(MoveTo(transform.localPosition, targetPosition));
+        StopAllCoroutines();
+        for (int i = 0; i < listGameObject.Count; i++)
+        {
+            StartCoroutine(MoveTo(listGameObject[i].transform, listGameObject[i].transform.localPosition, simulationData.planeXZCenterWithOnGravity));
+        }
     }
 
-    public void MoveObjectToOrigin()
+    public void MoveEveryObjectToOrigin()
     {
-        if (movingCoroutine!=null)
-            StopCoroutine(movingCoroutine);
-        movingCoroutine = StartCoroutine(MoveTo(transform.localPosition, originPosition));
+        StopAllCoroutines();
+        for (int i = 0; i < listGameObject.Count; i++)
+        {
+            StartCoroutine(MoveTo(listGameObject[i].transform, listGameObject[i].transform.localPosition, originPosition));
+        }
     }
 
-    private IEnumerator MoveTo(Vector3 startPosition, Vector3 endPosition)
+    private IEnumerator MoveTo(Transform goTransform, Vector3 startPosition, Vector3 endPosition)
     {
         float time = 0;
 
@@ -33,11 +38,13 @@ public class MovingObject : MonoBehaviour
             time += Time.deltaTime;
             float t = time / moveTime;
             t = t * t * (3f - 2f * t);
-            transform.localPosition = Vector3.Slerp(startPosition, endPosition, t);
+            goTransform.localPosition = Vector3.Slerp(startPosition, endPosition, t);
+            simulationData.PlaneXZCurrentPosition = goTransform.localPosition;
 
             yield return null;
         }
 
-        transform.localPosition = endPosition;
+        goTransform.localPosition = endPosition;
+        simulationData.PlaneXZCurrentPosition = endPosition;
     }
 }

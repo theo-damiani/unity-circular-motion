@@ -74,12 +74,14 @@ public class CameraController : MonoBehaviour
 
     public void SetCameraGravityOn()
     {
+        StopAllCoroutines();
         StartCoroutine(MoveTo(cameraStateGravityOn.position, cameraStateGravityOn.rotation.eulerAngles, moveTime));
         StartCoroutine(ChangeBackgroundColor(cameraStateGravityOn.backgroundColor, colorTransitionTime));
     }
 
     public void SetCameraGravityOff()
     {
+        StopAllCoroutines();
         StartCoroutine(MoveTo(cameraState.position, cameraState.rotation.eulerAngles, moveTime));
         StartCoroutine(ChangeBackgroundColor(cameraState.backgroundColor, colorTransitionTime));
     }

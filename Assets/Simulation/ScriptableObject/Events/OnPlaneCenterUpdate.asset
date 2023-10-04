@@ -9,10 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 134a9c00594c9a6d3b97c396af792d93, type: 3}
-  m_Name: CameraGravityOn
+  m_Script: {fileID: 11500000, guid: 39953326c52a3434f81d5d649c19d65c, type: 3}
+  m_Name: OnPlaneCenterUpdate
   m_EditorClassIdentifier: 
-  position: {x: 0, y: 10, z: -13}
-  rotation: {x: 0.3007058, y: 0, z: 0, w: 0.95371693}
-  scale: {x: 1, y: 1, z: 1}
-  backgroundColor: {r: 1, g: 1, b: 1, a: 1}

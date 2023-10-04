@@ -12,6 +12,7 @@ public class DraggableVector : Vector
 
     [Header("Plane restriction")]
     [SerializeField] private bool useCustomPlane;
+    [SerializeField] private SimulationData simulationData;
     [SerializeField] private Vector3 customPlaneCenter;
     [SerializeField] private Vector3 customPlaneNormal;
 
@@ -93,10 +94,11 @@ public class DraggableVector : Vector
     private void Start()
     {
         mainCamera = Camera.main;
+
         // Create a plane at a fixed distance from the camera, perpendicular to the camera's forward direction
         Vector3 planeNormal = -mainCamera.transform.forward;
         Vector3 planePosition = mainCamera.transform.position + dragPlaneDistance * mainCamera.transform.forward;
-
+        
         if (useCustomPlane)
         {
             dragPlane = new Plane(customPlaneNormal, customPlaneCenter);
@@ -106,6 +108,14 @@ public class DraggableVector : Vector
             dragPlane = new Plane(planeNormal, planePosition);
         }
 
+    }
+
+    public void DefineDragPlaneWithSimData()
+    {
+        if (useCustomPlane)
+        {
+            dragPlane = new Plane(customPlaneNormal, simulationData.PlaneXZCurrentPosition);
+        }
     }
 
     public override void Redraw()
