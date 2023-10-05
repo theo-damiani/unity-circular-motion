@@ -1157,6 +1157,37 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &778120945
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 778120946}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &778120946
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778120945}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1712,10 +1743,10 @@ GameObject:
   - component: {fileID: 1250600423}
   - component: {fileID: 1250600431}
   - component: {fileID: 1250600426}
-  - component: {fileID: 1250600425}
   - component: {fileID: 1250600427}
   - component: {fileID: 1250600429}
   - component: {fileID: 1250600428}
+  - component: {fileID: 1250600432}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -1788,20 +1819,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1250600420}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1250600425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1250600420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7abd10b3a9311e8d97c84e6f99cf902, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocityVector: {fileID: 548407904}
-  simulationData: {fileID: 11400000, guid: 1d80d4970fd82ad64ab30a3cc0e26664, type: 2}
 --- !u!54 &1250600426
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1857,9 +1874,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1250600425}
-        m_TargetAssemblyTypeName: MovingBall, Assembly-CSharp
-        m_MethodName: ApplyVelocityVector
+      - m_Target: {fileID: 1250600432}
+        m_TargetAssemblyTypeName: UniformMotionManager, Assembly-CSharp
+        m_MethodName: SetAndApplyMotion
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1946,6 +1963,22 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1250600432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250600420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 691fbd265fc82c5dc84d50d7d4778bf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  motion: {fileID: 11400000, guid: 0caec99e6cdc2daf38903bc019c33224, type: 2}
+  useVectorForInitVelocity: 1
+  velocityVector: {fileID: 548407904}
+  applyMotion: 0
 --- !u!1 &1260342695
 GameObject:
   m_ObjectHideFlags: 0
@@ -3480,3 +3513,4 @@ SceneRoots:
   - {fileID: 176275738}
   - {fileID: 1260342699}
   - {fileID: 1447392024}
+  - {fileID: 778120946}

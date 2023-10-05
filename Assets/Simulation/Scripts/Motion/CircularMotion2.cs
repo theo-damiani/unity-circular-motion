@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CircularMotion : MonoBehaviour
+public class CircularMotion2 : MonoBehaviour
 {
     [SerializeField] private float angularVelocityInit;
     [SerializeField] private Vector3 center;
