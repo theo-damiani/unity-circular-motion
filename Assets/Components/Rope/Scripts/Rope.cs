@@ -1,0 +1,121 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.Animations;
+
+public class Rope : MonoBehaviour
+{
+    [SerializeField]
+    private RopeData ropeData;
+
+    private List<GameObject> listOfRopeSegment;
+    private GameObject anchor;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        InitializeAnchor();
+
+        DefineRopeFromLength();
+    }
+
+    private void InitializeAnchor()
+    {
+        if (anchor==null)
+        {
+            anchor = new GameObject("Rope Anchor");
+            anchor.AddComponent<Rigidbody>();
+            anchor.GetComponent<Rigidbody>().isKinematic = true;
+            anchor.transform.SetParent(transform, false); // false because we do not want to keep the same parent-child offset relation in position.
+            // then with false, anchor.transform is not changed, therefore it stays at 0,0,0.
+        }
+    }
+
+    public void DefineRopeFromLength()
+    {
+        InitializeAnchor();
+
+        if (listOfRopeSegment is not null) 
+        {
+            // Destroy previous rope
+            for (int i = 0; i < listOfRopeSegment.Count; i++)
+            {
+                Destroy(listOfRopeSegment[i]);
+            }
+            listOfRopeSegment.Clear();
+        }
+
+
+        // Size of each segment in the direction of the rope 
+        float sizeSegment = Vector3.Scale(ropeData.RopeSegmentScale, ropeData.RopeDirectionInit).magnitude;
+        int numberOfRopeSegment = (int) Mathf.Ceil(ropeData.RopeLength/sizeSegment);
+        listOfRopeSegment = new List<GameObject>();
+
+        // Instantiate rope Segments 
+        for (int i = 0; i < numberOfRopeSegment; i++)
+        {
+            GameObject segment = Instantiate(ropeData.ropeSegmentPrefab, anchor.transform);
+
+            listOfRopeSegment.Add(segment);
+
+            //Configure transform component of segment
+            segment.transform.localScale = ropeData.RopeSegmentScale;
+            segment.transform.localRotation = Quaternion.identity;
+
+            // Configure Joint between each segment
+            ConfigurableJoint joint = segment.GetComponent<ConfigurableJoint>();
+            joint.anchor = Vector3.zero; // relative position of the anchor in the segment reference system. Set to the center of the segment.
+
+            if (i==0)
+            {
+                // first segment to initialize.
+                segment.transform.localPosition = anchor.transform.localPosition + Vector3.Scale(ropeData.RopeDirectionInit, ropeData.RopeSegmentScale);
+                joint.connectedBody = anchor.GetComponent<Rigidbody>();
+            }
+            else
+            {
+                segment.transform.localPosition = listOfRopeSegment[i-1].transform.localPosition + Vector3.Scale(ropeData.RopeDirectionInit, ropeData.RopeSegmentScale);
+                //joint.anchor = -ropeDirection.normalized/2;
+                joint.connectedBody = listOfRopeSegment[i-1].GetComponent<Rigidbody>();
+                //joint.autoConfigureConnectedAnchor = false;
+                //joint.connectedAnchor = ropeDirection.normalized/2;
+            }
+        }
+
+        SetJointsFromRopeGravity();
+    }
+
+    private void SetJointsFromRopeGravity()
+    {
+        for (int i = 0; i < listOfRopeSegment.Count; i++)
+        {
+            // apply gravity to every segment except one at origin (i>0),
+            // Segment at origin remains fixed.
+            GameObject segment = listOfRopeSegment[i];
+
+            segment.GetComponent<Rigidbody>().useGravity = ropeData.RopeUseGravity;
+
+            ConfigurableJoint joint = segment.GetComponent<ConfigurableJoint>();
+
+            joint.xMotion = ConfigurableJointMotion.Locked;
+            joint.yMotion = ConfigurableJointMotion.Locked;
+            joint.zMotion = ConfigurableJointMotion.Locked;
+
+            if (ropeData.RopeUseGravity)
+            {
+                joint.angularXMotion = ConfigurableJointMotion.Free;
+                joint.angularYMotion = ConfigurableJointMotion.Locked;
+                joint.angularZMotion = ConfigurableJointMotion.Locked;
+            }
+            else 
+            {
+                joint.angularXMotion = ConfigurableJointMotion.Locked;
+                joint.angularYMotion = ConfigurableJointMotion.Locked;
+                joint.angularZMotion = ConfigurableJointMotion.Locked;
+            }
+            
+        }
+    }
+}
