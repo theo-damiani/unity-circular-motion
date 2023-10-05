@@ -18,15 +18,20 @@ public class CylinderRopeManager : MonoBehaviour
 
     public void SetCylinder()
     {
-        cylinder.transform.localScale = new Vector3(0.3f, simulationData.planeXZCenterWithOnGravity.y/2+0.1f, 0.3f);
-        cylinder.transform.localPosition = new Vector3(0f, simulationData.planeXZCenterWithOnGravity.y/2+0.1f, 0f);
+        cylinder.transform.localScale = new Vector3(0.3f, simulationData.PlaneXZCurrentPosition.y/2+0.1f, 0.3f);
+        cylinder.transform.localPosition = new Vector3(0f, simulationData.PlaneXZCurrentPosition.y/2+0.1f, 0f);
         cylinder.SetActive(true);
     }
 
     public void SetRope()
     {
-        rope.transform.localPosition = new Vector3(0f, simulationData.planeXZCenterWithOnGravity.y, 0f);
-        ropeData.RopeDirectionInit = Quaternion.LookRotation((rope.transform.localPosition - ball.transform.localPosition).normalized).eulerAngles.normalized;
+        rope.transform.localPosition = new Vector3(0f, simulationData.PlaneXZCurrentPosition.y, 0f);
+        
+        rope.transform.rotation = Quaternion.identity;
+        rope.transform.Rotate(
+            Quaternion.LookRotation(ball.transform.localPosition-rope.transform.localPosition).eulerAngles
+        );
+        //rope.transform.LookAt(ball.transform);
         ropeData.RopeLength = (rope.transform.localPosition - ball.transform.localPosition).magnitude;
         rope.gameObject.SetActive(true);
     }

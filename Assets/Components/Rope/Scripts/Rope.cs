@@ -9,14 +9,13 @@ public class Rope : MonoBehaviour
 {
     [SerializeField]
     private RopeData ropeData;
-
     private List<GameObject> listOfRopeSegment;
     private GameObject anchor;
 
     // Start is called before the first frame update
     void Start()
     {
-        InitializeAnchor();
+        RopeData.OnRopeLengthUpdate += DefineRopeFromLength;
 
         DefineRopeFromLength();
     }
@@ -49,7 +48,7 @@ public class Rope : MonoBehaviour
 
 
         // Size of each segment in the direction of the rope 
-        float sizeSegment = Vector3.Scale(ropeData.RopeSegmentScale, ropeData.RopeDirectionInit).magnitude;
+        float sizeSegment = Vector3.Scale(ropeData.RopeSegmentScale, transform.forward).magnitude;
         int numberOfRopeSegment = (int) Mathf.Ceil(ropeData.RopeLength/sizeSegment);
         listOfRopeSegment = new List<GameObject>();
 
@@ -68,15 +67,17 @@ public class Rope : MonoBehaviour
             ConfigurableJoint joint = segment.GetComponent<ConfigurableJoint>();
             joint.anchor = Vector3.zero; // relative position of the anchor in the segment reference system. Set to the center of the segment.
 
+
+            Vector3 offsetAlongForward = transform.InverseTransformVector(Vector3.Scale(transform.forward, ropeData.RopeSegmentScale));
             if (i==0)
             {
                 // first segment to initialize.
-                segment.transform.localPosition = anchor.transform.localPosition + Vector3.Scale(ropeData.RopeDirectionInit, ropeData.RopeSegmentScale);
+                segment.transform.localPosition = anchor.transform.localPosition + offsetAlongForward;
                 joint.connectedBody = anchor.GetComponent<Rigidbody>();
             }
             else
             {
-                segment.transform.localPosition = listOfRopeSegment[i-1].transform.localPosition + Vector3.Scale(ropeData.RopeDirectionInit, ropeData.RopeSegmentScale);
+                segment.transform.localPosition = listOfRopeSegment[i-1].transform.localPosition + offsetAlongForward;
                 //joint.anchor = -ropeDirection.normalized/2;
                 joint.connectedBody = listOfRopeSegment[i-1].GetComponent<Rigidbody>();
                 //joint.autoConfigureConnectedAnchor = false;

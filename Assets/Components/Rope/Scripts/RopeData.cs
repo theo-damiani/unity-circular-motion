@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "RopeData", menuName = "Components / Rope")]
 public class RopeData : ScriptableObject
@@ -11,11 +13,10 @@ public class RopeData : ScriptableObject
     [Header("Rope Variables Definition")]
     [SerializeField] private float ropeLength;
     [field: SerializeField] public Vector3 RopeSegmentScale { get; private set; }
-    [field: SerializeField] public Vector3 RopeDirectionInit { get; set; } // Direction where each segment will be build at Instantiation.
     [SerializeField] public bool RopeUseGravity;
 
-    [Header("On Update Events Definition")]
-    [SerializeField] private GameEvent OnRopeLengthUpdate;
+    // Actions:
+    public static event System.Action OnRopeLengthUpdate;
 
     /* *********** Properties *********** */
 
@@ -26,8 +27,7 @@ public class RopeData : ScriptableObject
         set
         {
             ropeLength = value;
-            if (OnRopeLengthUpdate)
-                OnRopeLengthUpdate.Raise();
+            OnRopeLengthUpdate?.Invoke();
         }
     }
 }

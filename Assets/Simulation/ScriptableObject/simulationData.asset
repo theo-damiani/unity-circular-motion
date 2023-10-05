@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5235c47ed1dcdff6a6ebc9740f055a7, type: 3}
   m_Name: simulationData
   m_EditorClassIdentifier: 
-  planeXZCenterWithOnGravity: {x: 0, y: 4, z: 0}
+  YCenterWithOnGravity: 4
   gameEventOnPlaneCurrentPositionUpdate: {fileID: 11400000, guid: 3fe1916bb336567afbeaeb1bcfb0252c,
     type: 2}

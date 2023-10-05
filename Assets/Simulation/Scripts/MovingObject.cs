@@ -5,7 +5,7 @@ using UnityEngine;
 public class MovingObjectList : MonoBehaviour
 {
     [SerializeField] private List<GameObject> listGameObject;
-    [SerializeField] private List<Vector3> originPositions;
+    [SerializeField] private float originY;
     [SerializeField] private SimulationData simulationData;
     [SerializeField] private float moveTime;
 
@@ -16,11 +16,9 @@ public class MovingObjectList : MonoBehaviour
         StopAllCoroutines();
         for (int i = 0; i < listGameObject.Count; i++)
         {
-            Vector3 targetPos = simulationData.planeXZCenterWithOnGravity;
-            if (i!=0)
-            {
-                //targetPos += new Vector3(2,0,0);
-            }
+            Vector3 targetPos = new Vector3(listGameObject[i].transform.localPosition.x,
+                 simulationData.YCenterWithOnGravity,
+                 listGameObject[i].transform.localPosition.z);
             StartCoroutine(MoveTo(listGameObject[i].transform, listGameObject[i].transform.localPosition, targetPos));
         }
     }
@@ -30,7 +28,8 @@ public class MovingObjectList : MonoBehaviour
         StopAllCoroutines();
         for (int i = 0; i < listGameObject.Count; i++)
         {
-            StartCoroutine(MoveTo(listGameObject[i].transform, listGameObject[i].transform.localPosition, originPositions[i]));
+            Vector3 targetPos = new Vector3(listGameObject[i].transform.localPosition.x, originY, listGameObject[i].transform.localPosition.z);
+            StartCoroutine(MoveTo(listGameObject[i].transform, listGameObject[i].transform.localPosition, targetPos));
         }
     }
 
@@ -43,7 +42,7 @@ public class MovingObjectList : MonoBehaviour
             time += Time.deltaTime;
             float t = time / moveTime;
             t = t * t * (3f - 2f * t);
-            goTransform.localPosition = Vector3.Slerp(startPosition, endPosition, t);
+            goTransform.localPosition = Vector3.Lerp(startPosition, endPosition, t);
             simulationData.PlaneXZCurrentPosition = goTransform.localPosition;
 
             yield return null;

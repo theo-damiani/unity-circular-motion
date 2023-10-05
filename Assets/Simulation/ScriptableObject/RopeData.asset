@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ropeSegmentPrefab: {fileID: 6038622433514121140, guid: 3477b6322636239bd9c693e5621b0eaa,
     type: 3}
-  ropeLength: 0
-  <RopeSegmentScale>k__BackingField: {x: 0.2, y: 0.2, z: 0.2}
-  <RopeDirectionInit>k__BackingField: {x: 0, y: 0, z: 0}
+  ropeLength: 2
+  <RopeSegmentScale>k__BackingField: {x: 0.1, y: 0.1, z: 0.1}
+  <RopeDirectionInit>k__BackingField: {x: -0, y: 0, z: 0}
   RopeUseGravity: 0
   OnRopeLengthUpdate: {fileID: 11400000, guid: d8447acb83582eeb6a95ab4410f1a15e, type: 2}

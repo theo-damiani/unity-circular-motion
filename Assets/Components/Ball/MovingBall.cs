@@ -6,8 +6,14 @@ using UnityEngine;
 public class MovingBall : MonoBehaviour
 {
     [SerializeField] Vector velocityVector;
+    [SerializeField] SimulationData simulationData;
     public void ApplyVelocityVector()
     {
+        if (simulationData.useCircularMotion)
+        {
+            return;
+        }
+
         Vector3 velocity = velocityVector.components;
 
         Rigidbody rb = GetComponent<Rigidbody>();
