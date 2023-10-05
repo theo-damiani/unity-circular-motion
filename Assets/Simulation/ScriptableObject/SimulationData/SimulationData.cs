@@ -8,15 +8,15 @@ public class SimulationData : ScriptableObject
     public bool useCircularMotion;
     public float YCenterWithOnGravity;
     [SerializeField] private GameEvent gameEventOnPlaneCurrentPositionUpdate;
-    private Vector3 planeXZCurrentPosition;
-    public Vector3 PlaneXZCurrentPosition 
+    [SerializeField] private Vector3Variable planeCurrentPosition;
+    public Vector3 PlaneCurrentPosition 
     {
         get {
-            return planeXZCurrentPosition;
+            return planeCurrentPosition.Value;
         }
 
         set {
-            planeXZCurrentPosition = value;
+            planeCurrentPosition.Value = value;
             gameEventOnPlaneCurrentPositionUpdate.Raise();
         }
     }

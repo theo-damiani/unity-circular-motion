@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class MoveObject : MonoBehaviour
 {
+    [SerializeField] private bool test;
     public void ApplyVelocityChange(Vector3 velocity)
     {
         Rigidbody rb = GetComponent<Rigidbody>();

@@ -12,7 +12,6 @@ public class DraggableVector : Vector
 
     [Header("Plane restriction")]
     [SerializeField] private bool useCustomPlane;
-    [SerializeField] private SimulationData simulationData;
     [SerializeField] private Vector3 customPlaneCenter;
     [SerializeField] private Vector3 customPlaneNormal;
 
@@ -101,21 +100,18 @@ public class DraggableVector : Vector
         
         if (useCustomPlane)
         {
-            dragPlane = new Plane(customPlaneNormal, customPlaneCenter);
+            DefineDragPlane(customPlaneNormal, customPlaneCenter);
         }
         else 
         {
-            dragPlane = new Plane(planeNormal, planePosition);
+            DefineDragPlane(planeNormal, planePosition);
         }
 
     }
 
-    public void DefineDragPlaneWithSimData()
+    public void DefineDragPlane(Vector3 newPlaneNormal, Vector3 newPlanePosition)
     {
-        if (useCustomPlane)
-        {
-            dragPlane = new Plane(customPlaneNormal, simulationData.PlaneXZCurrentPosition);
-        }
+        dragPlane = new Plane(newPlaneNormal, newPlanePosition);
     }
 
     public override void Redraw()

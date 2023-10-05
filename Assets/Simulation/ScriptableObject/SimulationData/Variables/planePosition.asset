@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5235c47ed1dcdff6a6ebc9740f055a7, type: 3}
-  m_Name: simulationData
+  m_Script: {fileID: 11500000, guid: b5879de1b102dc1c18e50cf3875e1cf7, type: 3}
+  m_Name: planePosition
   m_EditorClassIdentifier: 
-  YCenterWithOnGravity: 4
-  gameEventOnPlaneCurrentPositionUpdate: {fileID: 11400000, guid: 3fe1916bb336567afbeaeb1bcfb0252c,
-    type: 2}
+  _value: {x: 0, y: 0, z: 0}
+  OnUpdateEvent: {fileID: 11400000, guid: 3fe1916bb336567afbeaeb1bcfb0252c, type: 2}

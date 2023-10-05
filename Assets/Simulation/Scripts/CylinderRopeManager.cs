@@ -18,14 +18,14 @@ public class CylinderRopeManager : MonoBehaviour
 
     public void SetCylinder()
     {
-        cylinder.transform.localScale = new Vector3(0.3f, simulationData.PlaneXZCurrentPosition.y/2+0.1f, 0.3f);
-        cylinder.transform.localPosition = new Vector3(0f, simulationData.PlaneXZCurrentPosition.y/2+0.1f, 0f);
+        cylinder.transform.localScale = new Vector3(0.3f, simulationData.PlaneCurrentPosition.y/2+0.1f, 0.3f);
+        cylinder.transform.localPosition = new Vector3(0f, simulationData.PlaneCurrentPosition.y/2+0.1f, 0f);
         cylinder.SetActive(true);
     }
 
     public void SetRope()
     {
-        rope.transform.localPosition = new Vector3(0f, simulationData.PlaneXZCurrentPosition.y, 0f);
+        rope.transform.localPosition = new Vector3(0f, simulationData.PlaneCurrentPosition.y, 0f);
         
         rope.transform.rotation = Quaternion.identity;
         rope.transform.Rotate(
