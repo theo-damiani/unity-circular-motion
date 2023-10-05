@@ -18,7 +18,8 @@ public class MovingBall : MonoBehaviour
 
         Rigidbody rb = GetComponent<Rigidbody>();
         
-        rb.velocity = Vector3.zero;
+        //rb.velocity = Vector3.zero;
+        Debug.Log(velocity);
         rb.AddForce(velocity, ForceMode.VelocityChange);
     }
 }
