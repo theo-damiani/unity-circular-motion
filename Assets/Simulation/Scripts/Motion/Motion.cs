@@ -4,5 +4,6 @@ using UnityEngine;
 
 public abstract class Motion : ScriptableObject, IMotion
 {
+    public bool isMotionInit;
     public abstract void ApplyMotion(Rigidbody rigidbody);
 }

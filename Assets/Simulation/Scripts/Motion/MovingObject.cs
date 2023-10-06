@@ -43,12 +43,12 @@ public class MovingObjectList : MonoBehaviour
             float t = time / moveTime;
             t = t * t * (3f - 2f * t);
             goTransform.localPosition = Vector3.Lerp(startPosition, endPosition, t);
-            simulationData.PlaneCurrentPosition = goTransform.localPosition;
+            simulationData.PlaneCurrentPosition = new Vector3(0, goTransform.localPosition.y, 0);
 
             yield return null;
         }
 
         goTransform.localPosition = endPosition;
-        simulationData.PlaneCurrentPosition = endPosition;
+        simulationData.PlaneCurrentPosition = new Vector3(0, endPosition.y, 0);
     }
 }

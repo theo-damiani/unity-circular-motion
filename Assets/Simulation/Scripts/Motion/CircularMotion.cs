@@ -7,7 +7,6 @@ public class CircularMotion : Motion
 {
     public float angularVelocityInit;
     public Vector3 center;
-    private bool isMotionInit;
     private float currentAngularVelocity;
 
     public override void ApplyMotion(Rigidbody rigidbody)

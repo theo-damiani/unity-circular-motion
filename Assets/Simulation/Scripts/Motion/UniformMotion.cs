@@ -6,7 +6,6 @@ using UnityEngine;
 public class UniformMotion : Motion
 {
     public Vector3 velocity;
-    public bool isMotionInit;
     public override void ApplyMotion(Rigidbody rigidbody)
     {
         if (!isMotionInit)

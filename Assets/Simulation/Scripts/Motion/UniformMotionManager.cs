@@ -40,4 +40,9 @@ public class UniformMotionManager : MonoBehaviour
     {
         motion.velocity = velocityVector.components;
     }
+
+    public void StopMotion()
+    {
+        applyMotion = false;
+    }
 }
