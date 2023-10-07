@@ -1,3 +1,4 @@
+
 using UnityEditor;
 using UnityEngine;
 
@@ -6,9 +7,8 @@ public class MoveUpDownFromVariableEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-        MoveUpDownFromVariable script = (MoveUpDownFromVariable) target;
+        // MoveUpDownFromVariable script = (MoveUpDownFromVariable) target;
 
-        //script.floatReference = (FloatReference) EditorGUILayout.ObjectField("Y Up Value :", script.floatReference, typeof(FloatReference), true);
-        //script.floatReference = (FloatReference) EditorGUILayout.ObjectField("", typeof(FloatReference));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("floatReference"));
     }
 }

@@ -7,6 +7,7 @@ public class MoveObjectUpDown : MoveObject
 {
     [SerializeField] private float yDown;
     [SerializeField] private float yUp;
+
     public virtual void MoveUp()
     {
         MoveAlongY(yUp);

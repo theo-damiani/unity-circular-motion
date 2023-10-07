@@ -1077,7 +1077,10 @@ MonoBehaviour:
   moveTime: 0
   yDown: 0
   yUp: 0
-  floatReference: 0
+  floatReference:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
