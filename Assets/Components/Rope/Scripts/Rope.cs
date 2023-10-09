@@ -17,7 +17,28 @@ public class Rope : MonoBehaviour
     {
         RopeData.OnRopeLengthUpdate += DefineRopeFromLength;
 
-        DefineRopeFromLength();
+        // DefineRopeFromLength();
+    }
+
+    public void BuildRopeTowards(GameObject target)
+    {
+        SetRopeDirectionTowards(target);
+        // DefineRopeFromLength();
+    }
+
+    public void SetRopeLocationAt(GameObject newLocation)
+    {
+        transform.localPosition = newLocation.transform.localPosition;
+    }
+
+    public void SetRopeDirectionTowards(GameObject target)
+    {        
+        transform.rotation = Quaternion.identity;
+        transform.Rotate(
+            Quaternion.LookRotation(target.transform.localPosition-transform.localPosition).eulerAngles
+        );
+        //rope.transform.LookAt(ball.transform);
+        ropeData.RopeLength = (transform.localPosition - target.transform.localPosition).magnitude;
     }
 
     private void InitializeAnchor()

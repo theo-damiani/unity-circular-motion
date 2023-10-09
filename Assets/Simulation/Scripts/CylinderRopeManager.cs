@@ -13,7 +13,7 @@ public class CylinderRopeManager : MonoBehaviour
     void Start()
     {
         cylinder.SetActive(false);
-        rope.gameObject.SetActive(false);
+        // rope.gameObject.SetActive(false);
     }
 
     public void SetCylinder()
@@ -25,14 +25,14 @@ public class CylinderRopeManager : MonoBehaviour
 
     public void SetRope()
     {
-        rope.transform.localPosition = new Vector3(0f, simulationData.PlaneCurrentPosition.y, 0f);
+        // rope.transform.localPosition = new Vector3(0f, simulationData.PlaneCurrentPosition.y, 0f);
         
-        rope.transform.rotation = Quaternion.identity;
-        rope.transform.Rotate(
-            Quaternion.LookRotation(ball.transform.localPosition-rope.transform.localPosition).eulerAngles
-        );
-        //rope.transform.LookAt(ball.transform);
-        ropeData.RopeLength = (rope.transform.localPosition - ball.transform.localPosition).magnitude;
-        rope.gameObject.SetActive(true);
+        // rope.transform.rotation = Quaternion.identity;
+        // rope.transform.Rotate(
+        //     Quaternion.LookRotation(ball.transform.localPosition-rope.transform.localPosition).eulerAngles
+        // );
+        // //rope.transform.LookAt(ball.transform);
+        // ropeData.RopeLength = (rope.transform.localPosition - ball.transform.localPosition).magnitude;
+        // rope.gameObject.SetActive(true);
     }
 }

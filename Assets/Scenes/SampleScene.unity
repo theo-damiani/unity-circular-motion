@@ -302,7 +302,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 176275738}
-  - component: {fileID: 176275741}
   - component: {fileID: 176275740}
   - component: {fileID: 176275739}
   - component: {fileID: 176275743}
@@ -351,17 +350,17 @@ MonoBehaviour:
   Response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 176275741}
-        m_TargetAssemblyTypeName: ActiveManager, Assembly-CSharp
-        m_MethodName: ActiveObjectsAtIndex
-        m_Mode: 3
+      - m_Target: {fileID: 1181956705}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &176275740
 MonoBehaviour:
@@ -379,10 +378,10 @@ MonoBehaviour:
   Response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 176275741}
-        m_TargetAssemblyTypeName: ActiveManager, Assembly-CSharp
-        m_MethodName: DeActiveAll
-        m_Mode: 1
+      - m_Target: {fileID: 1181956705}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -391,20 +390,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &176275741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 176275737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 392f38060b0aa2833a9868f110f16793, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  listOfGameObjects:
-  - {fileID: 1181956705}
 --- !u!114 &176275743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,29 +406,53 @@ MonoBehaviour:
   Response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 176275744}
-        m_TargetAssemblyTypeName: CylinderRopeManager, Assembly-CSharp
-        m_MethodName: SetCylinder
-        m_Mode: 1
+      - m_Target: {fileID: 289815507}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 176275744}
-        m_TargetAssemblyTypeName: CylinderRopeManager, Assembly-CSharp
-        m_MethodName: SetRope
-        m_Mode: 1
+      - m_Target: {fileID: 2064622048}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 289815508}
+        m_TargetAssemblyTypeName: Rope, Assembly-CSharp
+        m_MethodName: SetRopeLocationAt
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 98520175}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 289815508}
+        m_TargetAssemblyTypeName: Rope, Assembly-CSharp
+        m_MethodName: BuildRopeTowards
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1250600420}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &176275744
 MonoBehaviour:
@@ -454,14 +463,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 176275737}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 743e6c50a9e24d6568ff895cc0112a8a, type: 3}
+  m_Script: {fileID: 11500000, guid: 281e1b641eaf30530ba4ec402fbd4318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cylinder: {fileID: 2064622048}
-  ball: {fileID: 1250600420}
-  rope: {fileID: 289815508}
-  ropeData: {fileID: 11400000, guid: 623909e254e3ff9d2a5072bd7e440b74, type: 2}
-  simulationData: {fileID: 11400000, guid: 1d80d4970fd82ad64ab30a3cc0e26664, type: 2}
+  Event: {fileID: 11400000, guid: 461255f56f22219c4988da89f1da6717, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 289815507}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2064622048}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!21 &269686630
 Material:
   serializedVersion: 8
@@ -598,6 +630,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 623909e254e3ff9d2a5072bd7e440b74,
         type: 2}
+    - target: {fileID: 3972493250516767520, guid: f9e50c5f96dcc1e8ba036478a84912d9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3992154775887887698, guid: f9e50c5f96dcc1e8ba036478a84912d9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -656,7 +693,7 @@ PrefabInstance:
     - target: {fileID: 7677175459183834211, guid: f9e50c5f96dcc1e8ba036478a84912d9,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -5276631677461491261, guid: f9e50c5f96dcc1e8ba036478a84912d9, type: 3}
@@ -704,17 +741,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 281e1b641eaf30530ba4ec402fbd4318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: d8447acb83582eeb6a95ab4410f1a15e, type: 2}
+  Event: {fileID: 11400000, guid: 3fe1916bb336567afbeaeb1bcfb0252c, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 289815508}
         m_TargetAssemblyTypeName: Rope, Assembly-CSharp
-        m_MethodName: DefineRopeFromLength
-        m_Mode: 1
+        m_MethodName: SetRopeLocationAt
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 98520175}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3408,7 +3445,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2064622049
 Transform:
   m_ObjectHideFlags: 0
