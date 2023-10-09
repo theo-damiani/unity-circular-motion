@@ -4,8 +4,9 @@ using UnityEngine;
 
 public abstract class MoveObject : MonoBehaviour
 {
-    [SerializeField] private float moveTime;
-    private bool objectIsMoving;
+    [SerializeField] protected float moveTime;
+    [SerializeField] public Vector3Variable vector3Binded;
+    private bool objectIsMoving = false;
 
     public void MoveTo(Vector3 startPosition, Vector3 endPosition)
     {
@@ -28,11 +29,20 @@ public abstract class MoveObject : MonoBehaviour
             float t = time / moveTime;
             t = t * t * (3f - 2f * t);
             transform.localPosition = Vector3.Lerp(startPosition, endPosition, t);
-
+            SetVector3Bind();
             yield return null;
         }
 
         transform.localPosition = endPosition;
+        SetVector3Bind();
         objectIsMoving = false;
+    }
+
+    private void SetVector3Bind()
+    {
+        if (vector3Binded == null)
+        {return;}
+
+        vector3Binded.Value = transform.localPosition;
     }
 }
