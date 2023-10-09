@@ -9,6 +9,11 @@ public class MoveUpDownFromVariableEditor : Editor
     {
         // MoveUpDownFromVariable script = (MoveUpDownFromVariable) target;
 
+        using (new EditorGUI.DisabledScope(true))
+        {
+            EditorGUILayout.ObjectField("Script", MonoScript.FromMonoBehaviour((MoveUpDownFromVariable)target), typeof(MoveUpDownFromVariable), false);
+        }
+
         EditorGUILayout.PropertyField(serializedObject.FindProperty("floatReference"));
     }
 }
