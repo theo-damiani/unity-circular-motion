@@ -3326,6 +3326,8 @@ GameObject:
   - component: {fileID: 2064622049}
   - component: {fileID: 2064622052}
   - component: {fileID: 2064622051}
+  - component: {fileID: 2064622054}
+  - component: {fileID: 2064622053}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -3398,6 +3400,49 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2064622048}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2064622053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064622048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 281e1b641eaf30530ba4ec402fbd4318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 3fe1916bb336567afbeaeb1bcfb0252c, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2064622054}
+        m_TargetAssemblyTypeName: CylinderManager, Assembly-CSharp
+        m_MethodName: SetCylinder
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: a00485d96c2dc534f928210eaa124b6f,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: Vector3Variable, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2064622054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064622048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fef7e579530f0c7f95d8c1f56ae1c75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xzScale: 0.3
+  yScaleOffset: 0.1
 --- !u!1001 &2132403036
 PrefabInstance:
   m_ObjectHideFlags: 0
