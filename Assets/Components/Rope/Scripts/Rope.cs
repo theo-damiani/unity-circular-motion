@@ -13,11 +13,14 @@ public class Rope : MonoBehaviour
     private GameObject anchor;
 
     // Start is called before the first frame update
-    void Awake()
+    void OnEnable()
     {
         RopeData.OnRopeLengthUpdate += DefineRopeFromLength;
+    }
 
-        // DefineRopeFromLength();
+    void OnDisable()
+    {
+        RopeData.OnRopeLengthUpdate -= DefineRopeFromLength;
     }
 
     public void BuildRopeTowards(GameObject target)

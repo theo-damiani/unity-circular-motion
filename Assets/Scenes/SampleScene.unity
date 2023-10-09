@@ -3679,6 +3679,8 @@ GameObject:
   - component: {fileID: 3992154776143595139}
   - component: {fileID: 3972493250773018865}
   - component: {fileID: 289815509}
+  - component: {fileID: 7677175458927579060}
+  - component: {fileID: 7677175458927579059}
   m_Layer: 0
   m_Name: Rope
   m_TagString: Untagged
@@ -3686,6 +3688,48 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7677175458927579059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7677175458927579058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 281e1b641eaf30530ba4ec402fbd4318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 953deb515b0c6f240ab8c82245fb8f21, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7677175458927579060}
+        m_TargetAssemblyTypeName: RotateAroundObject, Assembly-CSharp
+        m_MethodName: set_IsRotating
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &7677175458927579060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7677175458927579058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33bee0d0c30395161abcaa45093b443a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  circularMotion: {fileID: 11400000, guid: 39904d3258f45edca87e895f72c69ba7, type: 2}
+  pivotPoint: {fileID: 11400000, guid: a00485d96c2dc534f928210eaa124b6f, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
