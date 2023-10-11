@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 134a9c00594c9a6d3b97c396af792d93, type: 3}
   m_Name: CameraGravityOn
   m_EditorClassIdentifier: 
-  position: {x: 0, y: 10, z: -13}
-  rotation: {x: 0.3007058, y: 0, z: 0, w: 0.95371693}
+  position: {x: 0, y: 11, z: -24}
+  rotation: {x: 0.2079117, y: 0, z: 0, w: 0.9781476}
   scale: {x: 1, y: 1, z: 1}
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}

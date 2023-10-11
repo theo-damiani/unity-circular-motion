@@ -102,7 +102,7 @@ public class CameraController : MonoBehaviour
         {
             time += Time.deltaTime;
             float t = time / moveTime;
-            t = t * t * (3f - 2f * t);
+            //t = t * t * (3f - 2f * t);
             cameraTransform.position = Vector3.Slerp(startPosition, targetPosition, t);
             cameraTransform.rotation = Quaternion.Slerp(startRotation, finalRotation, t);
             //UpdateCameraState();
