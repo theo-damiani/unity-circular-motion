@@ -1,30 +1,86 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+
+[Serializable]
+public class MotionData
+{
+    public Motion motion;
+    public bool isActive;
+}
 
 [RequireComponent(typeof(Rigidbody))]
 public class MotionManager : MonoBehaviour
 {
-    [SerializeField] private Motion motion;
-    [SerializeField] private bool applyMotion;
+    [SerializeField] private MotionData[] listMotionData;
+    [SerializeField] private bool enableMotion = false;
 
-    // Update is called once per frame
-    void FixedUpdate()
+    void Start()
     {
-        if (applyMotion)
+        for (int i = 0; i < listMotionData.Length; i++)
         {
-            motion.ApplyMotion(GetComponent<Rigidbody>());
+            listMotionData[i].motion.isMotionInit = false;
         }
     }
 
-    public void StartMotion()
+    void FixedUpdate()
     {
-        motion.isMotionInit = false;
-        applyMotion = true;
+        if (enableMotion)
+        {
+            for (int i = 0; i < listMotionData.Length; i++)
+            {
+                if (listMotionData[i].isActive)
+                {
+                    listMotionData[i].motion.ApplyMotion(GetComponent<Rigidbody>());
+                }
+            }
+        }
     }
 
-    public void StopMotion()
+    public void SetAndApplyMotionIndex(int index)
     {
-        applyMotion = false;
+        if (index >= listMotionData.Length)
+        {return;}
+
+        for (int i = 0; i < listMotionData.Length; i++)
+        {
+            if (i==index)
+            {
+                listMotionData[i].motion.InitMotion();
+                listMotionData[i].isActive = true;
+            }
+            else
+            {
+                listMotionData[i].isActive = false;
+            }
+        }
+    }
+
+    public void StopMotionIndex(int index)
+    {
+        if (index >= listMotionData.Length)
+        {return;}
+
+        listMotionData[index].isActive = false;
+    }
+
+    public void StopAllMotion()
+    {
+        for (int i = 0; i < listMotionData.Length; i++)
+        {
+            listMotionData[i].isActive = false;
+        }
+    }
+
+    public void EnableMotion()
+    {
+        enableMotion = true;
+    }
+
+    public void DisableMotion()
+    {
+        enableMotion = false;
     }
 }

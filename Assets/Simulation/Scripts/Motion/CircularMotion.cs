@@ -6,12 +6,12 @@ using UnityEngine;
 public class CircularMotion : Motion
 {
     public float angularVelocityInit;
-    public Vector3 center;
+    public Vector3Reference center;
     private float currentAngularVelocity;
 
     public override void ApplyMotion(Rigidbody rigidbody)
     {
-        Vector3 radius = center - rigidbody.transform.localPosition;
+        Vector3 radius = center.Value - rigidbody.transform.localPosition;
         if (!isMotionInit)
         {
             Vector3 velocityDirectionInit = (Quaternion.Euler(0, -90, 0) * radius).normalized;
