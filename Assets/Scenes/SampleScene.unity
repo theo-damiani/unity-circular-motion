@@ -466,6 +466,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2064622054}
+        m_TargetAssemblyTypeName: Cylinder, Assembly-CSharp
+        m_MethodName: SetCylinder
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: a00485d96c2dc534f928210eaa124b6f,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: Vector3Variable, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &176275744
 MonoBehaviour:
   m_ObjectHideFlags: 0
