@@ -7,11 +7,13 @@ public class ToggleEvents : MonoBehaviour
     [SerializeField] private GameEvent firstEvent;
     [SerializeField] private GameEvent secondEvent;
 
+    [SerializeField] private bool raiseEventAtStart;
     [SerializeField] private int eventLastRaised;
 
     void Start()
     {
-        RaiseEvent();
+        if (raiseEventAtStart)
+            RaiseEvent();
     }
 
     public void ToggleAndRaiseEvent()

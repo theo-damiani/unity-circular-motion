@@ -8,6 +8,11 @@ public abstract class MoveObject : MonoBehaviour
     [SerializeField] public Vector3Variable vector3Binded;
     private bool objectIsMoving = false;
 
+    public virtual void Start()
+    {
+        SetVector3Bind();
+    }
+
     public void MoveTo(Vector3 startPosition, Vector3 endPosition)
     {
         if (objectIsMoving)
@@ -15,6 +20,43 @@ public abstract class MoveObject : MonoBehaviour
             StopAllCoroutines();
         }
         StartCoroutine(CoroutineMoveTo(startPosition, endPosition));
+    }
+
+    public void MoveToAlongAxis(float value, Vector3 axis)
+    {
+        if (objectIsMoving)
+        {
+            StopAllCoroutines();
+        }
+        StartCoroutine(CoroutineMoveAlongY(value));
+    }
+
+    private IEnumerator CoroutineMoveAlongY(float value)
+    {
+        objectIsMoving = true;
+
+        float time = 0;
+        float initY = transform.localPosition.y;
+
+        while (time < moveTime)
+        {
+            time += Time.deltaTime;
+            float t = time / moveTime;
+            t = t * t * (3f - 2f * t);
+            float step = Mathf.Lerp(0, value, t);
+            transform.localPosition = new Vector3(transform.localPosition.x,
+                initY+step,
+                transform.localPosition.z);
+
+            SetVector3Bind();
+            yield return null;
+        }
+
+        transform.localPosition = new Vector3(transform.localPosition.x,
+                initY+value,
+                transform.localPosition.z);;
+        SetVector3Bind();
+        objectIsMoving = false;
     }
 
     private IEnumerator CoroutineMoveTo(Vector3 startPosition, Vector3 endPosition)

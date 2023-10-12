@@ -5,20 +5,20 @@ using UnityEngine;
 public class MoveUpDownFromVariable : MoveObjectUpDown
 {
     public FloatReference moveTimeReference;
-    public FloatReference yUpReference;
-    public FloatReference yDownReference;
+    public FloatReference yOffset;
 
-    void Start()
+    public override void Start()
     {
+        base.Start();
         moveTime = moveTimeReference.Value;
     }
     public override void MoveUp()
     {
-        MoveAlongY(yUpReference.Value);
+        MoveAlongY(yOffset.Value);
     }
 
     public override void MoveDown()
     {
-        MoveAlongY(yDownReference.Value);
+        MoveAlongY(-yOffset.Value);
     }
 }

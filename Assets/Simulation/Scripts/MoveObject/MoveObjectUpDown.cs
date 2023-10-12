@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class MoveObjectUpDown : MoveObject
 {
-    [SerializeField] private float yDown;
     [SerializeField] private float yUp;
+    [SerializeField] private float yDown;
 
     public virtual void MoveUp()
     {
@@ -20,9 +20,6 @@ public class MoveObjectUpDown : MoveObject
 
     protected void MoveAlongY(float targetY)
     {
-        Vector3 startPosition = transform.localPosition;
-        Vector3 endPosition = transform.localPosition;
-        endPosition.y = targetY;
-        base.MoveTo(startPosition, endPosition);
+        base.MoveToAlongAxis(targetY, Vector3.up);
     }
 }

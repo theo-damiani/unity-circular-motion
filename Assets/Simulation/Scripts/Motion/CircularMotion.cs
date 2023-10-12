@@ -7,9 +7,22 @@ public class CircularMotion : Motion
 {
     public float angularVelocityInit;
     public Vector3Reference center;
+    [SerializeField] private bool useUnityPhysics;
     private float currentAngularVelocity;
 
     public override void ApplyMotion(Rigidbody rigidbody)
+    {
+        if (useUnityPhysics)
+        {
+            ApplyWithUnityPhysics(rigidbody);
+        }
+        else
+        {
+            ApplyWithCustomComputation(rigidbody);
+        }
+    }
+
+    private void ApplyWithUnityPhysics(Rigidbody rigidbody)
     {
         Vector3 radius = center.Value - rigidbody.transform.localPosition;
         if (!isMotionInit)
@@ -24,5 +37,11 @@ public class CircularMotion : Motion
         Vector3 centripetalAcceleration = currentAngularVelocity * currentAngularVelocity * radius;
 
         rigidbody.AddForce(centripetalAcceleration, ForceMode.Acceleration);
+    }
+
+    private void ApplyWithCustomComputation(Rigidbody rigidbody)
+    {
+        Vector3 radius = center.Value - rigidbody.transform.localPosition;
+        rigidbody.transform.RotateAround(center.Value, Vector3.up, currentAngularVelocity*Mathf.Rad2Deg*Time.fixedDeltaTime);
     }
 }

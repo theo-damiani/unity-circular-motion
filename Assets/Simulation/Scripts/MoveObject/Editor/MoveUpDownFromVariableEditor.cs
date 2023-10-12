@@ -16,8 +16,7 @@ public class MoveUpDownFromVariableEditor : Editor
 
         EditorGUILayout.PropertyField(serializedObject.FindProperty("moveTimeReference"));
 
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("yUpReference"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("yDownReference"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("yOffset"));
 
         script.vector3Binded = (Vector3Variable)EditorGUILayout.ObjectField("Vector3 Binded", script.vector3Binded, typeof(Vector3Variable), false);
     }
