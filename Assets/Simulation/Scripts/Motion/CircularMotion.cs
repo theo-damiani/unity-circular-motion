@@ -49,7 +49,11 @@ public class CircularMotion : Motion
 
     private void ApplyWithCustomComputation(Rigidbody rigidbody)
     {
-        Vector3 radius = center.Value - rigidbody.transform.localPosition;
+        if (!isMotionInit)
+        {
+            isMotionInit = true;
+            currentAngularVelocity = angularVelocityInit;
+        }
         rigidbody.transform.RotateAround(center.Value, Vector3.up, currentAngularVelocity*Mathf.Rad2Deg*Time.fixedDeltaTime);
     }
 
