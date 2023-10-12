@@ -1,46 +1,52 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
 
-[RequireComponent(typeof(Rigidbody), typeof(MotionManager))]
+/// <summary>
+///     The GravityManager is responsible of setting correctly the useGravity boolean of the Rigidbody.
+///     But the motion associated to the events given in attributes is predominant over the gravity GameEvent.
+///     Therefore, the useGravity should follow the table below:
+///     
+///     | gravityEvent | motionEvent |      | useGravity |
+///     | ------------ | ----------- |      | ---------- |
+///     |      0       |      0      |      |      0     |
+///     |      0       |      1      |      |      0     |
+///     |      1       |      0      |      |      1     |
+///     |      1       |      1      |      |      0     |
+///     
+///     useGravity = gravityEvent & not(motionEvent)
+/// </summary>
+
+[RequireComponent(typeof(Rigidbody))]
 public class GravityManager : MonoBehaviour
 {
-    [SerializeField] private MotionManager motion; // The motion is predominant over gravity
-    [SerializeField] private GameEvent OnEnableGravity;
-    [SerializeField] private GameEvent OnDisableGravity;
+    private bool motionIsActive = false;
+    private bool gravityIsActive = false;
 
-    void Start()
+    public bool ComputeGravityBool()
     {
-        GameEventListener gameEventListener = gameObject.AddComponent<GameEventListener>();
-        gameEventListener.Event = OnEnableGravity;
-        UnityEvent unityEvent = new();
-        unityEvent.AddListener(EnableGravity);
-        gameEventListener.Response = unityEvent;
-
-        GameEventListener gel2 = gameObject.AddComponent<GameEventListener>();
-        gel2.Event = OnDisableGravity;
-        UnityEvent ue2 = new();
-        ue2.AddListener(DisableGravity);
-        gel2.Response = unityEvent;
+        return gravityIsActive & (!motionIsActive);
     }
 
-    public void EnableGravity()
+    public void MotionIsActive()
     {
-        if (motion.isActiveAndEnabled)
-        {
-            return;
-        }
-        GetComponent<Rigidbody>().useGravity = true;
+        motionIsActive = true;
+        GetComponent<Rigidbody>().useGravity = ComputeGravityBool();
     }
 
-    public void DisableGravity()
+    public void MotionIsInactive()
     {
-        if (motion.isActiveAndEnabled)
-        {
-            return;
-        }
-        GetComponent<Rigidbody>().useGravity = true;
+        motionIsActive = false;
+        GetComponent<Rigidbody>().useGravity = ComputeGravityBool();
+    }
+
+    public void GravityIsActive()
+    {
+        gravityIsActive = true;
+        GetComponent<Rigidbody>().useGravity = ComputeGravityBool();
+    }
+
+    public void GravityIsInactive()
+    {
+        gravityIsActive = false;
+        GetComponent<Rigidbody>().useGravity = ComputeGravityBool();
     }
 }

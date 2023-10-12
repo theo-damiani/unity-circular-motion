@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fae80566dd6df2a98345cdebc0d0afd, type: 3}
   m_Name: circularMotion
   m_EditorClassIdentifier: 
-  isMotionInit: 1
+  isMotionInit: 0
   angularVelocityInit: 2
-  center: {x: 0, y: 0, z: 0}
+  center:
+    UseConstant: 0
+    ConstantValue: {x: 0, y: 0, z: 0}
+    Variable: {fileID: 11400000, guid: a00485d96c2dc534f928210eaa124b6f, type: 2}

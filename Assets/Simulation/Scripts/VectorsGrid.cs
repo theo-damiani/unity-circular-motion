@@ -20,8 +20,10 @@ public class VectorsGrid : MonoBehaviour
 
     }
 
-    public void BuildGrid()
+    public IEnumerator BuildGrid(float delay)
     {
+        yield return new WaitForSeconds(delay);
+
         float planeSizeX = plane.transform.localScale.x * planeStep;
         float planeSizeZ = plane.transform.localScale.z * planeStep;
 
@@ -56,16 +58,20 @@ public class VectorsGrid : MonoBehaviour
 
     public void BuildGridAfterTime(float waitingTime)
     {
-        Invoke("BuildGrid", waitingTime);
+        StartCoroutine(BuildGrid(waitingTime));
     }
 
     public void DestroyGrid()
     {
-        if (vectorsInGrid==null)
+        StopAllCoroutines();
+
+        if(vectorsInGrid==null)
         {return;}
-        foreach (Vector vec in vectorsInGrid)
+
+        for(int i = vectorsInGrid.Count -1; i >= 0; i--)
         {
-            Destroy(vec.gameObject);
+            Destroy(vectorsInGrid[i].gameObject);
+            vectorsInGrid.RemoveAt(i);
         }
     }
 }
