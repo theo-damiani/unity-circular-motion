@@ -46,7 +46,7 @@ public class DraggableVector : Vector
     private void Awake()
     {
         resetPosition = transform.position;
-        resetComponents = components;
+        resetComponents = components.Value;
     }
 
     public override void OnEnable()
@@ -119,7 +119,7 @@ public class DraggableVector : Vector
     {
         base.Redraw();
 
-        if (headClickZone) headClickZone.transform.position = transform.position + components;
+        if (headClickZone) headClickZone.transform.position = transform.position + components.Value;
     }
 
     private void Update()
@@ -156,7 +156,7 @@ public class DraggableVector : Vector
 
                     if (VectorIsOnlyScalable)
                     {
-                        newComponents = Vector3.Project(newComponents, components);
+                        newComponents = Vector3.Project(newComponents, components.Value);
                     }
 
                     // Snap the direction
@@ -183,7 +183,7 @@ public class DraggableVector : Vector
                         }
                     }
 
-                    components = newComponents;
+                    components.Value = newComponents;
                     Redraw();
                 }
             }
@@ -222,7 +222,7 @@ public class DraggableVector : Vector
     public void Reset()
     {
         transform.position = resetPosition;
-        components = resetComponents;
+        components.Value = resetComponents;
         Redraw();
 
         HideHeadClickZone();
@@ -265,5 +265,10 @@ public class DraggableVector : Vector
             headClickZone.gameObject.SetActive(false);
             headClickZone.GetComponent<MeshRenderer>().enabled = false;
         }
+    }
+
+    public bool IsDragged()
+    {
+        return draggingHead | draggingTail;
     }
 }

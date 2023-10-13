@@ -8,7 +8,7 @@ public class Vector : MonoBehaviour
     private Material currentMaterial;
     private int renderQueue = 3000;
 
-    public Vector3 components;
+    public Vector3Reference components;
     public Color color = Color.black;
     [Min(0)] public float lineWidth = 0.2f;
     public int sortOrder = 0;
@@ -34,8 +34,8 @@ public class Vector : MonoBehaviour
 
     public virtual void Redraw()
     {
-        Vector3 direction = components.normalized;
-        float magnitude = components.magnitude;
+        Vector3 direction = components.Value.normalized;
+        float magnitude = components.Value.magnitude;
 
         // Prevent line width from exceeding 1/3 of the magnitude
         float trueWidth = Mathf.Min(magnitude / 3, lineWidth);
@@ -46,7 +46,7 @@ public class Vector : MonoBehaviour
         {
             head.radius = 1.2f * headRadius;
             head.height = headHeight;
-            head.transform.localPosition = components - headHeight * direction;
+            head.transform.localPosition = components.Value - headHeight * direction;
             if (direction != Vector3.zero)
             {
                 head.transform.localRotation = Quaternion.LookRotation(direction);
@@ -65,7 +65,7 @@ public class Vector : MonoBehaviour
         {
             body.startWidth = trueWidth;
             body.endWidth = trueWidth;
-            body.SetPositions(new Vector3[] { Vector3.zero, components - headHeight * direction });
+            body.SetPositions(new Vector3[] { Vector3.zero, components.Value - headHeight * direction });
         }
     }
 

@@ -43,7 +43,7 @@ public class VectorsGrid : MonoBehaviour
             {
                 Vector newVector = Instantiate(vectorPrefabs, transform, false);
                 newVector.transform.localPosition = bottomLeft + new Vector3(i*spacingPerX, gridPositionY.Value - 0.1f, j*spacingPerZ);
-                newVector.components = new Vector3(0, -gravity*vectorScale, 0);
+                newVector.components.Value = new Vector3(0, -gravity*vectorScale, 0);
                 newVector.sortOrder=1;
                 //newVector.color = Color.green;
                 newVector.SetColor();

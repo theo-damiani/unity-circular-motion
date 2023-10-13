@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class VelocityVectorManager : MonoBehaviour
 {
-    [SerializeField] private Vector velocityVector;
+    [SerializeField] private DraggableVector draggableVector;
     [SerializeField] private Vector3Variable velocityVariable;
     [SerializeField] private CircularMotion motion;    
     [SerializeField] private Transform transform1;    
-    public void SetVelocityFromVector()
-    {
-        velocityVariable.Value = velocityVector.components;
-    }
 
     public void SetVectorFromVelocity()
     {
-        velocityVector.components = velocityVariable.Value;
-        velocityVector.Redraw();
+        if (!draggableVector.IsDragged())
+        {
+            // If vector is dragged, no need to redraw it.
+            draggableVector.Redraw();
+        }
     }
 
     public void SetVectorFromCircularMotion()
@@ -25,6 +24,7 @@ public class VelocityVectorManager : MonoBehaviour
         Vector3 velocityDirectionInit = (Quaternion.Euler(0, -90, 0) * radius).normalized;
         Vector3 velocity = motion.angularVelocityInit*radius.magnitude*velocityDirectionInit;
 
-        velocityVariable.Value = velocity;
+        draggableVector.components.Value = velocity;
+        // velocityVector.Redraw();
     }
 }

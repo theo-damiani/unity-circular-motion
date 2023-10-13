@@ -28,10 +28,10 @@ public class DraggableVectorEditor : Editor
             interactable = vector.interactable;
         }
 
-        if (components != vector.components)
+        if ((vector.components.Variable!=null) && (components != vector.components.Value))
         {
             vector.Redraw();
-            components = vector.components;
+            components = vector.components.Value;
         }
 
         if (lineWidth != vector.lineWidth)
