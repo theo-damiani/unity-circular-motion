@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class MoveObject : MonoBehaviour
 {
     [SerializeField] protected float moveTime;
+    [SerializeField] protected TimeMode timeMode;
     [SerializeField] public Vector3Variable vector3Binded;
     private bool objectIsMoving = false;
 
@@ -40,7 +41,9 @@ public abstract class MoveObject : MonoBehaviour
 
         while (time < moveTime)
         {
-            time += Time.deltaTime;
+            // time += Time.deltaTime;
+            time += AppTimeUtils.GetDeltaTime(timeMode);
+
             float t = time / moveTime;
             t = t * t * (3f - 2f * t);
             float step = Mathf.Lerp(0, value, t);
@@ -67,7 +70,9 @@ public abstract class MoveObject : MonoBehaviour
 
         while (time < moveTime)
         {
-            time += Time.deltaTime;
+            // time += Time.deltaTime;
+            time += AppTimeUtils.GetDeltaTime(timeMode);
+
             float t = time / moveTime;
             t = t * t * (3f - 2f * t);
             transform.localPosition = Vector3.Lerp(startPosition, endPosition, t);

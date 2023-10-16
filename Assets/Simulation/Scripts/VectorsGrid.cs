@@ -9,6 +9,7 @@ public class VectorsGrid : MonoBehaviour
     [SerializeField] private GameObject plane;
     [SerializeField, Range(0, 10)] private int nbVecPerLine = 1;
     [SerializeField] private FloatReference gridPositionY;
+    [SerializeField] private TimeMode timeMode;
     private float planeStep = 10f;
     private float gravity = 9.81f;
     private float vectorScale = 0.2f;
@@ -22,7 +23,14 @@ public class VectorsGrid : MonoBehaviour
 
     public IEnumerator BuildGrid(float delay)
     {
-        yield return new WaitForSeconds(delay);
+        if (timeMode==TimeMode.Normal)
+        {
+            yield return new WaitForSeconds(delay);
+        }
+        else if (timeMode==TimeMode.UnscaledTime)
+        {
+            yield return new WaitForSecondsRealtime(delay);
+        }
 
         float planeSizeX = plane.transform.localScale.x * planeStep;
         float planeSizeZ = plane.transform.localScale.z * planeStep;
