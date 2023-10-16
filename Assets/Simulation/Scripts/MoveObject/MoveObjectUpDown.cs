@@ -10,16 +10,16 @@ public class MoveObjectUpDown : MoveObject
 
     public virtual void MoveUp()
     {
-        MoveAlongY(yUp);
+        MoveAlongY(yUp, yDown);
     }
 
     public virtual void MoveDown()
     {
-        MoveAlongY(yDown);
+        MoveAlongY(yDown, yUp);
     }
 
-    protected void MoveAlongY(float targetY)
+    protected void MoveAlongY(float startY, float targetY)
     {
-        base.MoveToAlongAxis(targetY, Vector3.up);
+        base.MoveToAlongAxis(startY, targetY);
     }
 }

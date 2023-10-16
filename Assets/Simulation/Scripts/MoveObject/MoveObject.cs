@@ -23,21 +23,20 @@ public abstract class MoveObject : MonoBehaviour
         StartCoroutine(CoroutineMoveTo(startPosition, endPosition));
     }
 
-    public void MoveToAlongAxis(float value, Vector3 axis)
+    public void MoveToAlongAxis(float startY, float endY)
     {
         if (objectIsMoving)
         {
             StopAllCoroutines();
         }
-        StartCoroutine(CoroutineMoveAlongY(value));
+        StartCoroutine(CoroutineMoveAlongY(startY, endY));
     }
 
-    private IEnumerator CoroutineMoveAlongY(float value)
+    private IEnumerator CoroutineMoveAlongY(float startY, float endY)
     {
         objectIsMoving = true;
 
         float time = 0;
-        float initY = transform.localPosition.y;
 
         while (time < moveTime)
         {
@@ -46,9 +45,9 @@ public abstract class MoveObject : MonoBehaviour
 
             float t = time / moveTime;
             t = t * t * (3f - 2f * t);
-            float step = Mathf.Lerp(0, value, t);
+            float step = Mathf.Lerp(startY, endY, t);
             transform.localPosition = new Vector3(transform.localPosition.x,
-                initY+step,
+                step,
                 transform.localPosition.z);
 
             SetVector3Bind();
@@ -56,7 +55,7 @@ public abstract class MoveObject : MonoBehaviour
         }
 
         transform.localPosition = new Vector3(transform.localPosition.x,
-                initY+value,
+                endY,
                 transform.localPosition.z);;
         SetVector3Bind();
         objectIsMoving = false;

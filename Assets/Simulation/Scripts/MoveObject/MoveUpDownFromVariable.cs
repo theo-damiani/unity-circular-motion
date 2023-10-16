@@ -14,11 +14,11 @@ public class MoveUpDownFromVariable : MoveObjectUpDown
     }
     public override void MoveUp()
     {
-        MoveAlongY(yOffset.Value);
+        MoveAlongY(transform.localPosition.y, yOffset.Value);
     }
 
     public override void MoveDown()
     {
-        MoveAlongY(-yOffset.Value);
+        MoveAlongY(transform.localPosition.y, 0);
     }
 }
