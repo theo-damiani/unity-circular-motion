@@ -2,33 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ball : MonoBehaviour
+public class PathRenderer : MonoBehaviour
 {
+    [SerializeField] private Material materialTrail;
+    private TrailRenderer trailRenderer;
     // Start is called before the first frame update
     void Start()
     {
-        TrailRenderer trailRenderer;
         if(!TryGetComponent<TrailRenderer>(out trailRenderer))
         {
             trailRenderer = gameObject.AddComponent<TrailRenderer>();
         }
+
+        trailRenderer.Clear();
+
+        trailRenderer.material = materialTrail;
+
         // Trail Renderer On:
         trailRenderer.autodestruct = false;
         trailRenderer.enabled = true;
-        //trailRenderer.time = float.PositiveInfinity;
-        trailRenderer.time = 5f;
+        trailRenderer.time = float.PositiveInfinity;
+        //trailRenderer.time = 5f;
+        trailRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
         AnimationCurve curve = new AnimationCurve();
         float curveWidth = 0.1f;
         curve.AddKey(0f, curveWidth);
         curve.AddKey(1f, curveWidth);
         trailRenderer.widthCurve = curve;
 
+        trailRenderer.sortingOrder = 1;
+
         //DontDestroyOnLoad(this.gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ClearPath()
     {
-        
+        if (trailRenderer)
+        {
+            trailRenderer.Clear();
+        }
     }
 }

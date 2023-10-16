@@ -15,6 +15,8 @@ public class CircularMotion : Motion
     {
         if (!isMotionInit)
         {
+            rigidbody.velocity = Vector3.zero; // Clear all previous forces
+
             if (useUnityPhysics)
             {
                 InitUnityPhysics(rigidbody);

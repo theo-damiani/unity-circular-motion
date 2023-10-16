@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5879de1b102dc1c18e50cf3875e1cf7, type: 3}
   m_Name: ballVelocity
   m_EditorClassIdentifier: 
-  _value: {x: -3.964154, y: 0, z: -0.53432155}
+  _value: {x: -0.13072586, y: 0, z: 1.8701831}
+  magnitudeRestriction: 0
   OnUpdateEvent: {fileID: 11400000, guid: fea1662fda8fbf1b8bd41436cd971124, type: 2}
