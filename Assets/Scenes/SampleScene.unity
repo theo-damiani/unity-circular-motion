@@ -2387,6 +2387,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   materialTrail: {fileID: 2100000, guid: f57e6f421f33bd9bca76b70fdd210952, type: 2}
+  startPrefab: {fileID: 7406359765306569137, guid: 8a7c9916895316edab3527eea1f992a9,
+    type: 3}
 --- !u!114 &1250600441
 MonoBehaviour:
   m_ObjectHideFlags: 0

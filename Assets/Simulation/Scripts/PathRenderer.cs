@@ -5,7 +5,10 @@ using UnityEngine;
 public class PathRenderer : MonoBehaviour
 {
     [SerializeField] private Material materialTrail;
+    [SerializeField] private GameObject startPrefab;
     private TrailRenderer trailRenderer;
+    private GameObject startPoint;
+    private bool isStartPointSet = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,11 +38,33 @@ public class PathRenderer : MonoBehaviour
         //DontDestroyOnLoad(this.gameObject);
     }
 
+    void Update()
+    {
+       if (!isStartPointSet && trailRenderer)
+        {
+            if (trailRenderer.positionCount == 0)
+            {
+                return;
+            }
+
+            Vector3 startPosition = trailRenderer.GetPosition(trailRenderer.positionCount-1);
+            Debug.Log(startPosition);
+            startPoint = Instantiate(startPrefab);
+            startPoint.transform.localPosition = startPosition;
+            isStartPointSet = true;
+        } 
+    }
+
     public void ClearPath()
     {
         if (trailRenderer)
         {
             trailRenderer.Clear();
+        }
+        if (startPoint)
+        {
+            Destroy(startPoint);
+            isStartPointSet = false;
         }
     }
 }
