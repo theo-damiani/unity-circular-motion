@@ -12,7 +12,7 @@ public class VelocityVectorManager : MonoBehaviour
     public void SetVectorFromVelocity()
     {
         if (!draggableVector.IsDragged())
-        {
+        {   
             // If vector is dragged, no need to redraw it.
             draggableVector.Redraw();
         }
@@ -22,7 +22,8 @@ public class VelocityVectorManager : MonoBehaviour
     {
         Vector3 radius = motion.center.Value - transform1.localPosition;
         Vector3 velocityDirectionInit = (Quaternion.Euler(0, -90, 0) * radius).normalized;
-        Vector3 velocity = motion.angularVelocityInit*radius.magnitude*velocityDirectionInit;
+        // Vector3 velocity = motion.angularVelocityInit*radius.magnitude*velocityDirectionInit;
+        Vector3 velocity = motion.angularVelocityInit*3f*velocityDirectionInit;
 
         draggableVector.components.Value = velocity;
         // velocityVector.Redraw();

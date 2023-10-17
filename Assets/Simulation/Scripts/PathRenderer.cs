@@ -46,7 +46,6 @@ public class PathRenderer : MonoBehaviour
             }
 
             Vector3 startPosition = trailRenderer.GetPosition(trailRenderer.positionCount-1);
-            Debug.Log(startPosition);
             startPoint = Instantiate(startPrefab);
             startPoint.transform.localPosition = startPosition;
             isStartPointSet = true;

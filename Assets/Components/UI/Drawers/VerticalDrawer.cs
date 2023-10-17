@@ -34,11 +34,11 @@ public class VerticalDrawer : MonoBehaviour
     {
         if (hiddenLabel)
         {
-            hiddenLabel.alpha = 0;
+            hiddenLabel.alpha = 1;
             hiddenLabel.blocksRaycasts = false;
         }
 
-        rectTransform.anchoredPosition = new Vector2(xShowing, yPosition);
+        rectTransform.anchoredPosition = new Vector2(xHidden, yPosition);
     }
 
     public void SetVisibility(bool visible)
