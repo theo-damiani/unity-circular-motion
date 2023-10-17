@@ -13,4 +13,9 @@ public class RotateAroundObject : MonoBehaviour
             transform.RotateAround(pivotPoint.Value, Vector3.up, circularMotion.currentAngularVelocity*Mathf.Rad2Deg*Time.fixedDeltaTime);
             //transform.GetComponent<Rigidbody>().angularVelocity = Vector3.up*circularMotion.angularVelocityInit;
     }
+
+    public void SetNotIsRotating(BoolVariable boolVariable)
+    {
+        IsRotating = !boolVariable.Value;
+    }
 }

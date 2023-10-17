@@ -202,6 +202,11 @@ public class DraggableVector : Vector
         SetInteractable(true);
     }
 
+    public void SetInteractable(BoolVariable boolVariable)
+    {
+        SetInteractable(boolVariable.Value);
+    }
+
     public void SetInteractable(bool value)
     {
         interactable = value;

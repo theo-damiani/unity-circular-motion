@@ -40,7 +40,7 @@ public class MotionManager : MonoBehaviour
         }
     }
 
-    public void SetAndApplyMotionIndex(int index)
+    public void SetMotionIndex(int index)
     {
         if (index >= listMotionData.Length)
         {return;}
@@ -79,12 +79,26 @@ public class MotionManager : MonoBehaviour
 
     public void EnableMotion()
     {
+        GetComponent<Rigidbody>().isKinematic = false;
         listMotionData[currentMotionIndex].motion.InitMotion();
         enableMotion = true;
     }
 
     public void DisableMotion()
     {
+        GetComponent<Rigidbody>().isKinematic = true;
         enableMotion = false;
+    }
+
+    public void DisableMotionFromVariable(BoolVariable boolVariable)
+    {
+        if (boolVariable.Value)
+        {
+            DisableMotion();
+        }
+        else
+        {
+            EnableMotion();
+        }
     }
 }

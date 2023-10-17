@@ -23,7 +23,7 @@ public class PathRenderer : MonoBehaviour
 
         // Trail Renderer On:
         trailRenderer.autodestruct = false;
-        trailRenderer.enabled = true;
+        trailRenderer.enabled = false;
         trailRenderer.time = float.PositiveInfinity;
         //trailRenderer.time = 5f;
         trailRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
@@ -50,6 +50,19 @@ public class PathRenderer : MonoBehaviour
             startPoint.transform.localPosition = startPosition;
             isStartPointSet = true;
         } 
+    }
+
+    public void SetPathRenderer(bool enable)
+    {
+        if (!enable)
+        {
+            ClearPath();
+        }
+        if (trailRenderer)
+        {
+            trailRenderer.enabled = enable;
+        }
+        this.enabled = enable;
     }
 
     public void ClearPath()
