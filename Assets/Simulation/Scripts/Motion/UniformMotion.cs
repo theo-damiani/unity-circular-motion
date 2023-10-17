@@ -10,6 +10,7 @@ public class UniformMotion : Motion
     {
         if (!isMotionInit)
         {
+            rigidbody.velocity = Vector3.zero;
             rigidbody.AddForce(velocity.Value, ForceMode.VelocityChange);
             isMotionInit = true;
         }

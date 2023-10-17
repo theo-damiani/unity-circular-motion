@@ -34,8 +34,6 @@ public class PathRenderer : MonoBehaviour
         trailRenderer.widthCurve = curve;
 
         trailRenderer.sortingOrder = 1;
-
-        //DontDestroyOnLoad(this.gameObject);
     }
 
     void Update()

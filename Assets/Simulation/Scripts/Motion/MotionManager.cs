@@ -16,6 +16,7 @@ public class MotionManager : MonoBehaviour
 {
     [SerializeField] private MotionData[] listMotionData;
     [SerializeField] private bool enableMotion = false;
+    private int currentMotionIndex;
 
     void Start()
     {
@@ -43,6 +44,8 @@ public class MotionManager : MonoBehaviour
     {
         if (index >= listMotionData.Length)
         {return;}
+
+        currentMotionIndex = index;
 
         for (int i = 0; i < listMotionData.Length; i++)
         {
@@ -76,6 +79,7 @@ public class MotionManager : MonoBehaviour
 
     public void EnableMotion()
     {
+        listMotionData[currentMotionIndex].motion.InitMotion();
         enableMotion = true;
     }
 
