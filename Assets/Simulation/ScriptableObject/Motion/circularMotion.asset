@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fae80566dd6df2a98345cdebc0d0afd, type: 3}
   m_Name: circularMotion
   m_EditorClassIdentifier: 
-  isMotionInit: 0
-  angularVelocityInit: 0.76956034
+  isMotionInit: 1
+  angularVelocityInit: 2
   center:
     UseConstant: 0
     ConstantValue: {x: 0, y: 0, z: 0}
     Variable: {fileID: 11400000, guid: a00485d96c2dc534f928210eaa124b6f, type: 2}
   useUnityPhysics: 0
   velocityVariable: {fileID: 11400000, guid: 65400402c098e8881b0daa8d3d85d946, type: 2}
+  currentAngularVelocity: 2
