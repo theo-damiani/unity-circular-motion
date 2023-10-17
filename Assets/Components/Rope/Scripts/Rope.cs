@@ -112,6 +112,15 @@ public class Rope : MonoBehaviour
         SetJointsFromRopeGravity();
     }
 
+    public void ReleaseRope()
+    {
+        if (gameObject.activeSelf)
+        {
+            ropeData.RopeUseGravity = true;
+            SetJointsFromRopeGravity();
+        }
+    }
+
     private void SetJointsFromRopeGravity()
     {
         for (int i = 0; i < listOfRopeSegment.Count; i++)
