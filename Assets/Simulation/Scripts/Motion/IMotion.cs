@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IMotion
 {
     void ApplyMotion(Rigidbody rigidbody);
+    void InitMotion(Rigidbody rigidbody);
 }

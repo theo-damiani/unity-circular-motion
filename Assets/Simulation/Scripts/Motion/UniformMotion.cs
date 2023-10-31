@@ -5,15 +5,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "uniformMotion", menuName="Motion / Uniform Motion")]
 public class UniformMotion : Motion
 {
-    public Vector3Reference velocity;
+    public override void InitMotion(Rigidbody rigidbody)
+    {
+        // rigidbody.velocity = Vector3.zero;
+        rigidbody.AddForce(velocity.Value, ForceMode.VelocityChange);
+    }
+
     public override void ApplyMotion(Rigidbody rigidbody)
     {
-        if (!isMotionInit)
-        {
-            rigidbody.velocity = Vector3.zero;
-            rigidbody.AddForce(velocity.Value, ForceMode.VelocityChange);
-            isMotionInit = true;
-        }
-        // No Forces to apply!
+        //return;
+        //rigidbody.AddForce(velocity.Value, ForceMode.Force);
     }
 }

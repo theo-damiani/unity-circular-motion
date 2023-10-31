@@ -1,23 +1,22 @@
 using System;
-using UnityEngine;
 
 [Serializable]
-public class Vector3Reference
+public class BoolReference
 {
     public bool UseConstant = true;
-    public Vector3 ConstantValue;
-    public Vector3Variable Variable;
+    public bool ConstantValue;
+    public BoolVariable Variable;
 
-    public Vector3Reference()
+    public BoolReference()
     { }
 
-    public Vector3Reference(Vector3 value)
+    public BoolReference(bool value)
     {
         UseConstant = true;
         ConstantValue = value;
     }
 
-    public Vector3 Value
+    public bool Value
     {
         get { return UseConstant ? ConstantValue : Variable.Value; }
         set { if (UseConstant) {ConstantValue = value;} else {Variable.Value = value;}}

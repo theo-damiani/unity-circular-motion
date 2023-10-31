@@ -6,9 +6,9 @@ using UnityEngine;
 public class DragPlaneFromVariable : MonoBehaviour
 {
     [Header("Drag Plane Variable")]
-    [SerializeField] private Vector3Variable planePosition;
+    [SerializeField] private Vector3Reference planePosition;
     [SerializeField] private Transform transformGameObject;
-    [SerializeField] private Vector3Variable planeNormal;
+    [SerializeField] private Vector3Reference planeNormal;
 
     public void DefineDragPlaneFromVariable()
     {

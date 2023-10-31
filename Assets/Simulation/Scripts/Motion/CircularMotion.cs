@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "circularMotion", menuName="Motion / Circular Motion")]
-public class CircularMotion : Motion
+public class CircularMotion
 {
     public float angularVelocityInit; // Used if velocityVariable is null;
     public Vector3Reference center;
@@ -11,37 +10,37 @@ public class CircularMotion : Motion
     [SerializeField] private Vector3Variable velocityVariable;
     public float currentAngularVelocity;
 
-    public override void ApplyMotion(Rigidbody rigidbody)
-    {
-        if (!isMotionInit)
-        {
-            rigidbody.velocity = Vector3.zero; // Clear all previous forces
+    // public void ApplyMotion(Rigidbody rigidbody)
+    // {
+    //     if (!isMotionInit)
+    //     {
+    //         rigidbody.velocity = Vector3.zero; // Clear all previous forces
 
-            if (useUnityPhysics)
-            {
-                InitUnityPhysics(rigidbody);
-            }
-            else
-            {
-                InitCustomPhysics(rigidbody);
-            }
-            isMotionInit = true;
-        }
+    //         if (useUnityPhysics)
+    //         {
+    //             InitUnityPhysics(rigidbody);
+    //         }
+    //         else
+    //         {
+    //             InitCustomPhysics(rigidbody);
+    //         }
+    //         isMotionInit = true;
+    //     }
 
-        if (useUnityPhysics)
-        {
-            ApplyWithUnityPhysics(rigidbody);
-        }
-        else
-        {
-            ApplyWithCustomComputation(rigidbody);
-        }
+    //     if (useUnityPhysics)
+    //     {
+    //         ApplyWithUnityPhysics(rigidbody);
+    //     }
+    //     else
+    //     {
+    //         ApplyWithCustomComputation(rigidbody);
+    //     }
         
-        if (velocityVariable!=null) // Update velocity variable
-        {
-            velocityVariable.Value = GetVelocityFromAngularSpeed(rigidbody.transform, false);
-        }
-    }
+    //     if (velocityVariable!=null) // Update velocity variable
+    //     {
+    //         velocityVariable.Value = GetVelocityFromAngularSpeed(rigidbody.transform, false);
+    //     }
+    // }
 
     public Vector3 GetVelocityFromAngularSpeed(Transform transform, bool useInit)
     {

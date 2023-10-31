@@ -1,41 +1,42 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 [Serializable]
 public class MotionData
 {
     public Motion motion;
-    public bool isActive;
+    public bool isInit;
+    public BoolReference isActive;
 }
 
 [RequireComponent(typeof(Rigidbody))]
 public class MotionManager : MonoBehaviour
 {
     [SerializeField] private MotionData[] listMotionData;
-    [SerializeField] private bool enableMotion = false;
-    private int currentMotionIndex;
+    private Rigidbody rb;
 
     void Start()
     {
-        for (int i = 0; i < listMotionData.Length; i++)
-        {
-            listMotionData[i].motion.isMotionInit = false;
-        }
+        rb = GetComponent<Rigidbody>();
     }
 
     void FixedUpdate()
     {
-        if (enableMotion)
+        // rb.velocity = Vector3.zero;
+        for (int i = 0; i < listMotionData.Length; i++)
         {
-            for (int i = 0; i < listMotionData.Length; i++)
+            if (listMotionData[i].isActive.Value)
             {
-                if (listMotionData[i].isActive)
+                if (!listMotionData[i].isInit)
                 {
-                    listMotionData[i].motion.ApplyMotion(GetComponent<Rigidbody>());
+                    listMotionData[i].motion.InitMotion(rb);
+                    listMotionData[i].isInit = true;
                 }
+                listMotionData[i].motion.ApplyMotion(rb);
+            }
+            else
+            {
+                listMotionData[i].isInit = false;
             }
         }
     }
@@ -45,18 +46,16 @@ public class MotionManager : MonoBehaviour
         if (index >= listMotionData.Length)
         {return;}
 
-        currentMotionIndex = index;
-
         for (int i = 0; i < listMotionData.Length; i++)
         {
             if (i==index)
             {
-                listMotionData[i].motion.InitMotion();
-                listMotionData[i].isActive = true;
+                listMotionData[i].isInit = false;
+                listMotionData[i].isActive.Value = true;
             }
             else
             {
-                listMotionData[i].isActive = false;
+                listMotionData[i].isActive.Value = false;
             }
         }
     }
@@ -66,39 +65,14 @@ public class MotionManager : MonoBehaviour
         if (index >= listMotionData.Length)
         {return;}
 
-        listMotionData[index].isActive = false;
+        listMotionData[index].isActive.Value = false;
     }
 
     public void StopAllMotion()
     {
         for (int i = 0; i < listMotionData.Length; i++)
         {
-            listMotionData[i].isActive = false;
-        }
-    }
-
-    public void EnableMotion()
-    {
-        GetComponent<Rigidbody>().isKinematic = false;
-        listMotionData[currentMotionIndex].motion.InitMotion();
-        enableMotion = true;
-    }
-
-    public void DisableMotion()
-    {
-        GetComponent<Rigidbody>().isKinematic = true;
-        enableMotion = false;
-    }
-
-    public void DisableMotionFromVariable(BoolVariable boolVariable)
-    {
-        if (boolVariable.Value)
-        {
-            DisableMotion();
-        }
-        else
-        {
-            EnableMotion();
+            listMotionData[i].isActive.Value = false;
         }
     }
 }

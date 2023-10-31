@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 583ddb54d30831e1594d1af7b03fc4f2, type: 3}
+  m_Name: DefaultAffordances
+  m_EditorClassIdentifier: 
+  showPlayButton: 0
+  showPauseButton: 0
+  showResetButton: 0
+  showTimeControl: 0
+  camera:
+    position:
+      X: 0
+      Y: 0
+      Z: 0
+    showCameraControl: 0
+    isLockedOnObject: 0
+  showReferenceFrame: 0
+  physicalObject:
+    isInteractive: 0
+    showTrace: 0
+    showTraceIsInteractive: 0
+    initialPosition:
+      X: 2
+      Y: 5
+      Z: 0
+    initialRotation:
+      X: 0
+      Y: 0
+      Z: 0
+    showVelocityVector: 1
+    initialVelocity:
+      X: 0
+      Y: 0
+      Z: -1
+    velocityVectorIsInteractive: 1
+    showVelocityLabel: 0
+    showVelocityEquation: 0
+  centralForce:
+    isActive: 0
+    isInteractive: 0
+    showVector: 0
+    showLabel: 0
+    showEquation: 0
+    initialAngularVelocity: 0

@@ -1,29 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Variable", menuName = "Variables / Bool")]
-public class BoolVariable : ScriptableObject
+public class BoolVariable : BaseVariable<bool>
 {
-    [SerializeField] private bool _value;
-    [SerializeField] private GameEvent OnUpdateEvent;
-
-    public bool Value 
-    {
-        get {return _value;}
-
-        set
-        {
-            _value = value;
-            if (OnUpdateEvent)
-                OnUpdateEvent.Raise();
-        }
-    }
-
-    public void SetReversedValue(bool value)
-    {
-        _value = !value;
-            if (OnUpdateEvent)
-                OnUpdateEvent.Raise();
-    }
 }
