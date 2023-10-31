@@ -12,6 +12,11 @@ public class Rope : MonoBehaviour
     private List<GameObject> listOfRopeSegment;
     private GameObject anchor;
 
+    void Awake()
+    {
+        ropeData.RopeUseGravity = false;
+    }
+
     // Start is called before the first frame update
     void OnEnable()
     {
@@ -119,6 +124,12 @@ public class Rope : MonoBehaviour
             ropeData.RopeUseGravity = true;
             SetJointsFromRopeGravity();
         }
+    }
+
+    public void SetUseGravity(bool value)
+    {
+        ropeData.RopeUseGravity = value;
+        SetJointsFromRopeGravity();
     }
 
     private void SetJointsFromRopeGravity()

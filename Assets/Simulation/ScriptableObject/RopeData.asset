@@ -16,6 +16,4 @@ MonoBehaviour:
     type: 3}
   ropeLength: 2
   <RopeSegmentScale>k__BackingField: {x: 0.1, y: 0.1, z: 0.1}
-  <RopeDirectionInit>k__BackingField: {x: -0, y: 0, z: 0}
-  RopeUseGravity: 0
-  OnRopeLengthUpdate: {fileID: 11400000, guid: d8447acb83582eeb6a95ab4410f1a15e, type: 2}
+  RopeUseGravity: 1
