@@ -8,6 +8,7 @@ public class VectorsGrid : MonoBehaviour
     [SerializeField] private GameObject plane;
     [SerializeField, Range(0, 10)] private int nbVecPerLine = 1;
     [SerializeField] private FloatReference gridPositionY;
+    [SerializeField] private BoolReference condition;
     private float planeStep = 10f;
     private float gravity = 9.81f;
     private float vectorScale = 0.2f;
@@ -57,7 +58,10 @@ public class VectorsGrid : MonoBehaviour
 
     public void BuildGridAfterTime(float waitingTime)
     {
-        StartCoroutine(BuildGrid(waitingTime));
+        if (condition.Value)
+        {
+            StartCoroutine(BuildGrid(waitingTime));
+        }
     }
 
     public void DestroyGrid()

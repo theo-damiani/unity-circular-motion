@@ -18,35 +18,28 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class GravityManager : MonoBehaviour
 {
-    private bool motionIsActive = false;
-    private bool gravityIsActive = false;
+    [SerializeField] private BoolReference motionIsActive;
+    [SerializeField] private BoolReference gravityIsActive;
 
     public bool ComputeGravityBool()
     {
-        return gravityIsActive & (!motionIsActive);
+        return gravityIsActive.Value & (!motionIsActive.Value);
     }
 
-    public void MotionIsActive()
+    void OnEnable()
     {
-        motionIsActive = true;
-        GetComponent<Rigidbody>().useGravity = ComputeGravityBool();
+        motionIsActive.Variable.OnUpdateValue += UpdateGravity;
+        gravityIsActive.Variable.OnUpdateValue += UpdateGravity;
     }
 
-    public void MotionIsInactive()
+    void OnDisable()
     {
-        motionIsActive = false;
-        GetComponent<Rigidbody>().useGravity = ComputeGravityBool();
+        motionIsActive.Variable.OnUpdateValue -= UpdateGravity;
+        gravityIsActive.Variable.OnUpdateValue -= UpdateGravity;
     }
 
-    public void GravityIsActive()
+    public void UpdateGravity()
     {
-        gravityIsActive = true;
-        GetComponent<Rigidbody>().useGravity = ComputeGravityBool();
-    }
-
-    public void GravityIsInactive()
-    {
-        gravityIsActive = false;
         GetComponent<Rigidbody>().useGravity = ComputeGravityBool();
     }
 }

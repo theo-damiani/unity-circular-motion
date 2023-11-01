@@ -20,7 +20,6 @@ public class VectorRigidbodyBind : MonoBehaviour
     {
         if (centralForceIsActive.Value)
         {
-            Debug.Log(rb.velocity);
             SetVectorVelocity();
         }
     }

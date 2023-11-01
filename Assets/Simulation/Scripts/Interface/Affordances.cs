@@ -12,7 +12,8 @@ public class Affordances : ScriptableObject
     public A_Camera camera;
     public bool showReferenceFrame;
     public A_PhysicalObject physicalObject;
-    public A_Force centralForce;
+    public A_Force gravityForce;
+    public A_CentralForce centralForce;
 }
 
 [Serializable]
@@ -39,7 +40,7 @@ public class A_PhysicalObject
 }
 
 [Serializable]
-public class A_Force
+public class A_CentralForce
 {
     public bool isActive;
     public bool isInteractive;
@@ -47,6 +48,16 @@ public class A_Force
     public bool showLabel;
     public bool showEquation;
     public float initialAngularVelocity;
+}
+
+[Serializable]
+public class A_Force
+{
+    public bool isActive;
+    public bool isInteractive;
+    public bool showVector;
+    public bool showLabel;
+    public bool showEquation;
 }
 
 [Serializable]

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 583ddb54d30831e1594d1af7b03fc4f2, type: 3}
   m_Name: DefaultAffordances
   m_EditorClassIdentifier: 
-  showPlayButton: 0
-  showPauseButton: 0
-  showResetButton: 0
+  showPlayButton: 1
+  showPauseButton: 1
+  showResetButton: 1
   showTimeControl: 0
   camera:
     position:
@@ -44,6 +44,12 @@ MonoBehaviour:
     velocityVectorIsInteractive: 1
     showVelocityLabel: 0
     showVelocityEquation: 0
+  gravityForce:
+    isActive: 0
+    isInteractive: 1
+    showVector: 1
+    showLabel: 0
+    showEquation: 0
   centralForce:
     isActive: 0
     isInteractive: 0

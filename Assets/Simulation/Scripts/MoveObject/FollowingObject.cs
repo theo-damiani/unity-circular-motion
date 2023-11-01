@@ -5,7 +5,7 @@ using UnityEngine;
 public class FollowingObject : MonoBehaviour
 {
     [SerializeField] Transform targetObject;
-    void FixedUpdate()
+    void LateUpdate()
     {
         transform.localPosition = targetObject.localPosition;
     }

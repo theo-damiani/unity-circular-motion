@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 public abstract class BaseVariable<T> : ScriptableObject
 {
@@ -25,6 +24,7 @@ public abstract class BaseVariable<T> : ScriptableObject
     private T _defaultValue;
     [SerializeField]
     public GameEvent OnUpdateEvent;
+    public event Action OnUpdateValue;
 
     public virtual T Value
     {
@@ -99,6 +99,7 @@ public abstract class BaseVariable<T> : ScriptableObject
         _value = newValue;
         if (OnUpdateEvent)
                     OnUpdateEvent.Raise();
+        OnUpdateValue?.Invoke();
 
         return newValue;
     }

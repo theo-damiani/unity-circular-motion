@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using UnityEngine.UI;
 using System;
+using UnityEngine.Events;
 
 public class AppManager : Singleton<AppManager>
 {
@@ -29,8 +30,17 @@ public class AppManager : Singleton<AppManager>
     [SerializeField] private GameObject ballVelocityVector;
     [SerializeField] private BoolVariable showVelocityEquation;
     [SerializeField] private GameObject velocityLabel;
-    [SerializeField] private BoolVariable showballPath;
-    [SerializeField] private RectTransform showballPathToggle;
+    [SerializeField] private BoolVariable showBallPath;
+    [SerializeField] private RectTransform showBallPathToggle;
+
+    [Header("Gravity force Variables")]
+    [SerializeField] private GameEvent gravityIsOn;
+    [SerializeField] private GameEvent gravityIsOff;
+    [SerializeField] private BoolVariable gravityIsActive;
+    [SerializeField] private RectTransform gravityIsInteractive;
+    [SerializeField] private BoolVariable showGravityField;
+    [SerializeField] private GameObject gravityLabel;
+    [SerializeField] private BoolVariable showGravityEquation;
 
     [Header("Central force Variables")]
     [SerializeField] private BoolVariable centralForceIsActive;
@@ -66,8 +76,9 @@ public class AppManager : Singleton<AppManager>
     public void ResetApp()
     {
         // // Main control config:
-        // playButton.gameObject.SetActive(currentAffordances.showPlayButton);
-        // resetButton.gameObject.SetActive(currentAffordances.showResetButton);
+        playButton.gameObject.SetActive(currentAffordances.showPlayButton);
+        playButton.GetComponent<PlayButton>().PlayWithoutNotify();
+        resetButton.gameObject.SetActive(currentAffordances.showResetButton);
         // // ball config:
         ball.transform.SetPositionAndRotation(currentAffordances.physicalObject.initialPosition.ToVector3(), Quaternion.identity);
         // ball.transform.Find("ballObject").transform.rotation = Quaternion.Euler(currentAffordances.physicalObject.initialRotation.ToVector3());
@@ -76,17 +87,44 @@ public class AppManager : Singleton<AppManager>
         ballVelocityVector.GetComponent<DraggableVector>().SetInteractable(currentAffordances.physicalObject.velocityVectorIsInteractive);
         ballVelocityVector.GetComponent<DraggableVector>().Redraw();
         
-        // playButton.GetComponent<PlayButton>().PlayWithoutNotify();
         ball.GetComponent<Rigidbody>().isKinematic = false;
         ball.GetComponent<Rigidbody>().velocity = ballVelocity.Value;
+
+        // Path Renderer config:
+        showBallPath.Value = currentAffordances.physicalObject.showTrace;
+        showBallPathToggle.gameObject.SetActive(currentAffordances.physicalObject.showTraceIsInteractive);
+        showBallPathToggle.GetComponent<ToggleStartActivation>().SetToggleVisibility(currentAffordances.physicalObject.showTrace);
+
+        // Gravity Force
+        if (currentAffordances.gravityForce.isActive)
+        {
+            gravityIsInteractive.GetComponent<ToggleEvents>().eventLastRaised = 1;
+            gravityIsInteractive.GetComponent<Toggle>().isOn = true;
+            gravityIsOn.Raise();
+        }
+        else
+        {
+            gravityIsInteractive.GetComponent<ToggleEvents>().eventLastRaised = 0;
+            gravityIsInteractive.GetComponent<Toggle>().isOn = false;
+            gravityIsOff.Raise();
+        }
+        gravityIsActive.Value = currentAffordances.gravityForce.isActive;
+        gravityIsInteractive.gameObject.SetActive(currentAffordances.gravityForce.isInteractive);
+        showGravityField.Value = currentAffordances.gravityForce.showVector;
+
+
+
+
+
+
+
+
+
+
 
         // velocityLabel.SetActive(currentAffordances.physicalObject.showVelocityLabel);
         // showVelocityEquation.Value = currentAffordances.physicalObject.showVelocityEquation;
         // ballIsInteractive.Value = currentAffordances.physicalObject.isInteractive;
-        // // Path Renderer config:
-        // showballPath.Value = currentAffordances.physicalObject.showTrace;
-        // showballPathToggle.gameObject.SetActive(currentAffordances.physicalObject.showTraceIsInteractive);
-        // showballPathToggle.GetComponent<ToggleStartActivation>().SetToggleVisibility(currentAffordances.physicalObject.showTrace);
         // // Thrust Config:
         // thrustIsActive.Value = currentAffordances.centralForce.isActive;
         // thrustShowVector.Value = currentAffordances.centralForce.showVector;

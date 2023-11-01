@@ -6,6 +6,7 @@ public class PathRenderer : MonoBehaviour
 {
     [SerializeField] private Material materialTrail;
     [SerializeField] private GameObject startPrefab;
+    [SerializeField] private BoolReference showPath;
     private TrailRenderer trailRenderer;
     private GameObject startPoint;
     private bool isStartPointSet = false;
@@ -23,7 +24,7 @@ public class PathRenderer : MonoBehaviour
 
         // Trail Renderer On:
         trailRenderer.autodestruct = false;
-        trailRenderer.enabled = false;
+        trailRenderer.enabled = showPath.Value;
         trailRenderer.time = float.PositiveInfinity;
         //trailRenderer.time = 5f;
         trailRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
@@ -34,6 +35,23 @@ public class PathRenderer : MonoBehaviour
         trailRenderer.widthCurve = curve;
 
         trailRenderer.sortingOrder = 1;
+    }
+
+    void OnEnable()
+    {
+        Debug.Log(showPath.UseConstant);
+        if (!showPath.UseConstant)
+        {
+            showPath.Variable.OnUpdateValue += OnUpdateShowPath;
+        }
+    }
+
+    void OnDisable()
+    {
+        if (!showPath.UseConstant)
+        {
+            showPath.Variable.OnUpdateValue -= OnUpdateShowPath;
+        }
     }
 
     void Update()
@@ -52,17 +70,18 @@ public class PathRenderer : MonoBehaviour
         } 
     }
 
+    public void OnUpdateShowPath()
+    {
+        SetPathRenderer(showPath.Value);
+    }
+
     public void SetPathRenderer(bool enable)
     {
-        if (!enable)
-        {
-            ClearPath();
-        }
+        ClearPath();
         if (trailRenderer)
         {
             trailRenderer.enabled = enable;
         }
-        this.enabled = enable;
     }
 
     public void ClearPath()
